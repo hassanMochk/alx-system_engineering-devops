@@ -1,14 +1,19 @@
 #!/bin/bash
+# Get the absolute path of the current working directory
 current_dir=$(pwd)
+
+# Get the parent directory
 parent_dir=$(dirname "$current_dir")
-for file in *.html; do
-    if [ -e "$parent_dir/$file" ]; then
-    if [ "$current_dir/$file" -nt "$parent_dir/$file" ]; then
-            cp "$file" "$parent_dir"
-   echo "Copied '$file' to '$parent_dir'"
-  fi
-   else
- cp "$file" "$parent_dir"
-  echo "Copied '$file' to '$parent_dir'"
-fi
+
+# Loop through HTML files in the current directory
+for file in "$current_dir"/*.html; do
+    # Extract the filename
+    filename=$(basename "$file")
+
+    # Check if the file doesn't exist in the parent directory or if it is newer
+    if [ ! -e "$parent_dir/$filename" ] || [ "$file" -nt "$parent_dir/$filename" ]; then
+        # Copy the file to the parent directory
+        cp "$file" "$parent_dir/$filename"
+        echo "Copied $filename to $parent_dir"
+    fi
 done
