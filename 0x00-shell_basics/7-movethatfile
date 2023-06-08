@@ -1,2 +1,2 @@
 #!/bin/bash
-chmod +x 7-movethatfile.sh
+mv /tmp/betty /tmp/my_frist_directory/
