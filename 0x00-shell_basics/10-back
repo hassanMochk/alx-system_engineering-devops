@@ -1,0 +1,3 @@
+#!/bin/bash
+previous_dir=$(cat ~/.previous_dir)
+cd "$previous_dir"
